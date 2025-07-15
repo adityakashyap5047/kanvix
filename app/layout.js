@@ -19,7 +19,14 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className}`}>
         <ThemeProvider attribute="class" defaultTheme="dark">
-          {children}
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <footer className="bg-gray-900 p-12">
+            <div className="container mx-auto px-4 text-center text-gray-200">
+              <p>Made with ❤️ by Kanvix</p>
+            </div>
+          </footer>
         </ThemeProvider>
       </body>
     </html>
