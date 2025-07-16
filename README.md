@@ -1,4 +1,4 @@
-# <img src="public/kanvix.png" height="26" alt="Kanvix Logo" > **Kanvix**
+# <img src="public/kanvix/kanvix.png" height="26" alt="Kanvix Logo" > **Kanvix**
 
 > **A modern project management platform to streamline collaboration and boost productivity.**
 

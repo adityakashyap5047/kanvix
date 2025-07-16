@@ -11,13 +11,13 @@ function Header() {
     <header className="container mx-auto">
         <nav className="py-6 px-4 flex justify-between items-center">
           <Link href="/" className="logo">
-            <Image src="/kanvix.png" alt="Kanvix Logo" width={50} height={50} 
-              className="h-10 w-auto object-contain"
+            <Image src="/kanvix/kanvix_rect_line.png" alt="Kanvix Logo" width={50} height={50} 
+              className="sm:h-10 h-8 w-auto object-contain"
             />
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Link href="/project/create">
-              <Button variant="destructive" className={"flex items-center gap-2 cursor-pointer"}>
+              <Button variant="destructive" className={"flex items-center gap-2 cursor-pointer h-8 sm:h-10"}>
                 <PenBox size={18} />
                 <span>Create Project</span>
               </Button>
