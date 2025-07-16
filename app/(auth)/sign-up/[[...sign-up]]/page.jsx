@@ -1,9 +1,10 @@
+import { SignUp } from '@clerk/nextjs'
 import React from 'react'
 
-function page() {
+function SignUpPage() {
   return (
-    <div>page Sign up</div>
+    <div><SignUp /></div>
   )
 }
 
-export default page
+export default SignUpPage
