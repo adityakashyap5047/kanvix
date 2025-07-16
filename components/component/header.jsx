@@ -17,7 +17,7 @@ function Header() {
           </Link>
           <div className="flex items-center gap-2 sm:gap-4">
             <Link href="/project/create">
-              <Button variant="destructive" className={"flex items-center gap-2 cursor-pointer h-8 sm:h-10"}>
+              <Button className={"bg-[#5293f7] text-white hover:bg-sky-500 flex items-center gap-2 cursor-pointer h-8 sm:h-10"}>
                 <PenBox size={18} />
                 <span>Create Project</span>
               </Button>
