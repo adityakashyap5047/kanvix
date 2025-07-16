@@ -1,8 +1,11 @@
+import CompanyCarousel from "@/components/company-carousel";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card";
 import { BarChart, Calendar, ChevronRight, Layout } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import faqs from "@/data/faqs";
 
 const features = [
   {
@@ -28,6 +31,7 @@ const features = [
 function page() {
   return (
     <div className="min-h-screen">
+      {/* Main Section */}
       <section className="container mx-auto py-20 text-center">
         <h1 className="text-6xl sm:text-7xl lg:text-8xl font-extrabold gradient-title pb-6 flex flex-col">
           Streamline Your Workflow <br />
@@ -72,6 +76,33 @@ function page() {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Companies Carousel */}
+      <section className="py-20">
+        <div className="container mx-auto">
+          <h3 className="text-3xl font-bold mb-12 text-center">
+            Trusted by Industry Leaders
+          </h3>
+          <CompanyCarousel />
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="bg-gray-900 py-20 px-5">
+        <div className="container mx-auto">
+          <h3 className="text-3xl font-bold mb-12 text-center">
+            Frequently Asked Questions
+          </h3>
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger>{faq.question}</AccordionTrigger>
+                <AccordionContent>{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </div>
