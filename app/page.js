@@ -2,7 +2,7 @@ import CompanyCarousel from "@/components/company-carousel";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card";
-import { BarChart, Calendar, ChevronRight, Layout } from "lucide-react"
+import { ArrowRight, BarChart, Calendar, ChevronRight, Layout } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import faqs from "@/data/faqs";
@@ -48,19 +48,19 @@ function page() {
         </h1>
         <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">Empower your team with our intuitive project management solution.</p>
         <Link href={"/onboarding"}>
-          <Button size={"lg"} className={"mr-8"}>
+          <Button size={"lg"} className={"mr-8 cursor-pointer"}>
             Get Started <ChevronRight size={18} />
           </Button>
         </Link>
-        <Link href={"/#features"}>
-          <Button size={"lg"} variant={"outline"} className={"mr-4"}>
+        <Link href={"/#faqs"}>
+          <Button size={"lg"} variant={"outline"} className={"mr-4 cursor-pointer"}>
             Learn More
           </Button>
         </Link>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="bg-gray-900 py-20 px-5">
+      <section className="bg-gray-900 py-20 px-5">
         <div className="container mx-auto">
           <h3 className="text-3xl font-bold mb-12 text-center">Key Features</h3>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -90,7 +90,7 @@ function page() {
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-gray-900 py-20 px-5">
+      <section id="faqs" className="bg-gray-900 py-20 px-5">
         <div className="container mx-auto">
           <h3 className="text-3xl font-bold mb-12 text-center">
             Frequently Asked Questions
@@ -103,6 +103,24 @@ function page() {
               </AccordionItem>
             ))}
           </Accordion>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 text-center px-5">
+        <div className="container mx-auto">
+          <h3 className="text-3xl font-bold mb-6">
+            Ready to Transform Your Workflow?
+          </h3>
+          <p className="text-xl mb-12">
+            Join thousands of teams already using ZCRUM to streamline their
+            projects and boost productivity.
+          </p>
+          <Link href="/onboarding">
+            <Button size="lg" className="animate-bounce cursor-pointer">
+              Start For Free <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
         </div>
       </section>
     </div>
