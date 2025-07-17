@@ -56,8 +56,8 @@ const SprintCreationForm = ({
 
   return (
     <>
-        <div className="flex justify-between">
-            <h1 className="text-5xl font-bold mb-8 gradient-title">{projectTitle}</h1>
+        <div className="flex flex-wrap px-4 mb-4 justify-between">
+            <h1 className="text-5xl font-bold mb-2 gradient-title">{projectTitle}</h1>
             <Button 
                 className={"mt-2 cursor-pointer"} 
                 onClick={() => setShowForm(!showForm)}
@@ -65,10 +65,10 @@ const SprintCreationForm = ({
             >{showForm ? "Cancel" : "Create New Sprint"}</Button>
         </div>
         {
-            showForm && <Card className={"pt-4 mb-4"}>
+            showForm && <Card className={"pt-4 mx-3 mb-4"}>
                 <CardContent>
-                    <form className="flex gap-4 items-end" onSubmit={handleSubmit(formSubmit)}>
-                        <div className="flex-1">
+                    <form className="flex flex-wrap gap-4 items-end" onSubmit={handleSubmit(formSubmit)}>
+                        <div className="flex-1 min-w-[200px]">
                             <label 
                                 htmlFor="name"
                                 className="block text-sm font-medium mb-1"
