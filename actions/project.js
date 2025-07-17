@@ -8,7 +8,7 @@ export async function createProject(data){
     const { userId, sessionClaims } = auth();
 
     const orgId = sessionClaims?.o?.id;
-    
+
     if (!userId) {
         throw new Error("Unauthorized");
     }
@@ -39,7 +39,11 @@ export async function createProject(data){
             }
         })
         
-        return project;
+        return {
+  ...project,
+  createdAt: project.createdAt.toISOString(),
+  updatedAt: project.updatedAt.toISOString(),
+};
     } catch (error) {
         throw new Error("Failed to create project: " + error.message);
     }
