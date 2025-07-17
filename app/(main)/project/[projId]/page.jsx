@@ -1,8 +1,11 @@
 import React from 'react'
 
-const page = () => {
+const page = async ({params}) => {
+
+  const projId = await params?.projId;
+
   return (
-    <div>page</div>
+    <div>page {projId}</div>
   )
 }
 
