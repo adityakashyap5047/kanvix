@@ -40,10 +40,10 @@ export async function createProject(data){
         })
         
         return {
-  ...project,
-  createdAt: project.createdAt.toISOString(),
-  updatedAt: project.updatedAt.toISOString(),
-};
+            ...project,
+            createdAt: project.createdAt.toISOString(),
+            updatedAt: project.updatedAt.toISOString(),
+        };
     } catch (error) {
         throw new Error("Failed to create project: " + error.message);
     }
