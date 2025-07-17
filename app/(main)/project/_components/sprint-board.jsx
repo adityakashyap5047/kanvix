@@ -100,11 +100,29 @@ const SprintBoard = ({ sprints, projectId, orgId }) => {
         reorderedCard.forEach((card, i) => {
           card.order = i;
         });
+      } else {
+        // remove card from source list
+        const [movedCard] = sourceList.splice(source.index, 1);
 
-        const sortedIssues = newOrderedData.sort((a, b) => a.order - b.order);
-        setIssues(newOrderedData, sortedIssues);
-      };
-    };
+        // assign the new list id to the moved card
+        movedCard.status = destination.droppableId;
+
+        // add new card to the destination list
+        destinationList.splice(destination.index, 0, movedCard);
+
+        sourceList.forEach((card, i) => {
+          card.order = i;
+        });
+
+        // update the order of the destination list
+        destinationList.forEach((card, i) => {
+          card.order = i;
+        });
+      }
+
+      const sortedIssues = newOrderedData.sort((a, b) => a.order - b.order);
+      setIssues(newOrderedData, sortedIssues);
+    }
 
     if(issuesError) return <div className='text-red-500 px-6'>Error loading issues</div>;
 
