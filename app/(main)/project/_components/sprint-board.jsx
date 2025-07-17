@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import IssueCreationDrawer from './create-issue';
 import useFetch from '@/hooks/use-fetch';
-import { getIssueForSprint } from '@/actions/issues';
+import { getIssueForSprint, updateIssueOrder } from '@/actions/issues';
 import { BarLoader } from 'react-spinners';
 import IssueCard from './issue-card';
 import { toast } from 'sonner';
@@ -40,6 +40,12 @@ const SprintBoard = ({ sprints, projectId, orgId }) => {
       setData: setIssues,
       fn: fetchIssues
     } = useFetch(getIssueForSprint);
+
+    const {
+      fn: updateIssueOrderFn,
+      loading: updateIssueLoading,
+      error: updateIssueError
+    } = useFetch(updateIssueOrder)
 
     React.useEffect(() => {
       if(currentSprint.id){
@@ -122,6 +128,8 @@ const SprintBoard = ({ sprints, projectId, orgId }) => {
 
       const sortedIssues = newOrderedData.sort((a, b) => a.order - b.order);
       setIssues(newOrderedData, sortedIssues);
+
+      updateIssueOrderFn(sortedIssues);
     }
 
     if(issuesError) return <div className='text-red-500 px-6'>Error loading issues</div>;
@@ -134,13 +142,15 @@ const SprintBoard = ({ sprints, projectId, orgId }) => {
             sprints={sprints}
             projectId={projectId}
         />
-
-        {issuesLoading && (
+        {updateIssueError && (
+          <p className='text-red-500 px-6 mt-2'>{updateIssueError.message}</p>
+        )}
+        {(updateIssueLoading && issuesLoading) && (
           <BarLoader className='mt-4' color='#36d7b7' width={"100%"} />
         )}
 
         <DragDropContext onDragEnd={onDragEnd}>
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 !bg-slate-900 p-4'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-4 !bg-slate-900 p-4'>
             {status.map((column) => (
               <Droppable key={column.key} droppableId={column.key}>
                 {(provided) => {

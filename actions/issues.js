@@ -67,3 +67,27 @@ export async function getIssueForSprint(sprintId){
 
     return issues;
 }
+
+export async function updateIssueOrder(updatedIssues) {
+    const {userId, sessionClaims} = auth();
+        
+    const orgId = sessionClaims?.o?.id;
+
+    if (!userId || !orgId) {
+        throw new Error("Unauthorized");        
+    }
+
+    await db.$transaction(async (primsa) => {
+        for(const issue of updatedIssues) {
+            await primsa.issue.update({
+                where: {id: issue.id},
+                data: {
+                    order: issue.order,
+                    status: issue.status,
+                },
+            });
+        }
+    })
+
+    return {success: true};
+}
