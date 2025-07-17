@@ -1,6 +1,7 @@
 "use server"
 
 import { db } from "@/lib/prisma";
+import { auth } from "@clerk/nextjs/server";
 
 export async function createSprint(projectId, data){
 

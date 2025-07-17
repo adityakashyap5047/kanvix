@@ -1,5 +1,6 @@
 import { getProject } from '@/actions/project';
 import NotFound from '@/app/not-found';
+import SprintCreationForm from '@/components/create-sprint';
 import React from 'react'
 
 const page = async ({params}) => {
