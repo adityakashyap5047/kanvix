@@ -77,15 +77,16 @@ export async function getProjects(orgId){
 }
 
 export async function deleteProject(projectId) {
-    const {userId, sessionClaims, orgRole} = auth();
+    const {userId, sessionClaims} = auth();
 
     const orgId = sessionClaims?.o?.id;
+    const orgRole = sessionClaims?.o?.rol;
 
     if (!userId || !orgId) {
         throw new Error("Unauthorized");        
     }
 
-    if (orgRole !== "org:admin") {
+    if (orgRole !== "admin") {
         throw new Error("Only organization admins can delete projects.")
     }
 

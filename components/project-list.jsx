@@ -1,6 +1,7 @@
 import { getProjects } from "@/actions/project";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import DeleteProject from "./delete-project";
 
 export default async function ProjectList({ orgId }) {
 
@@ -24,7 +25,10 @@ export default async function ProjectList({ orgId }) {
         return (
             <Card key={project.id}>
                 <CardHeader>
-                    <CardTitle className={"flex justify-between items-center italic"}>{project.name}</CardTitle>
+                    <CardTitle className={"flex justify-between items-center italic"}>
+                        {project.name}
+                        <DeleteProject projectId={project.id} />
+                    </CardTitle>
                 </CardHeader>
                 <CardContent>
                     <p className="text-sm text-gray-500 mb-4">{project.description}</p>
