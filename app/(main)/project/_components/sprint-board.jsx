@@ -11,6 +11,14 @@ import useFetch from '@/hooks/use-fetch';
 import { getIssueForSprint } from '@/actions/issues';
 import { BarLoader } from 'react-spinners';
 import IssueCard from './issue-card';
+import { toast } from 'sonner';
+
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+  return result;
+}
 
 const SprintBoard = ({ sprints, projectId, orgId }) => {
 
@@ -51,7 +59,52 @@ const SprintBoard = ({ sprints, projectId, orgId }) => {
       fetchIssues(currentSprint.id);
     }
 
-    const onDragEnd = () => {};
+    const onDragEnd = async (result) => {
+      if(currentSprint.status === "PLANNED") {
+        toast.warning("Start the sprint to update board");
+        return;
+      }
+
+      if(currentSprint.status === "COMPLETED") {
+        toast.warning("Cannot update board after sprint end");
+        return;
+      }
+
+      const { source, destination } = result;
+
+      if(
+        destination.droppableId === source.droppableId &&
+        destination.index === source.index
+      ){
+        return;
+      }
+
+      const newOrderedData = [...issues];
+
+      const sourceList = newOrderedData.filter(
+        (list) => list.status === source.droppableId
+      )
+
+      const destinationList = newOrderedData.filter(
+        (list) => list.status === destination.droppableId
+      )
+
+      // if source and destination are same
+      if(source.droppableId === destination.droppableId){
+        const reorderedCard = reorder(
+          sourceList,
+          source.index,
+          destination.index
+        );
+
+        reorderedCard.forEach((card, i) => {
+          card.order = i;
+        });
+
+        const sortedIssues = newOrderedData.sort((a, b) => a.order - b.order);
+        setIssues(newOrderedData, sortedIssues);
+      };
+    };
 
     if(issuesError) return <div className='text-red-500 px-6'>Error loading issues</div>;
 
