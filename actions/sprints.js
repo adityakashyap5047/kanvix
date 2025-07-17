@@ -41,3 +41,50 @@ export async function createSprint(projectId, data){
 
     return sprint;
 }
+
+export async function updateSprintStatus(sprintId, newStatus){
+    const {userId, sessionClaims} = auth();
+    
+    const orgId = sessionClaims?.o?.id;
+    const orgRole = sessionClaims?.o?.rol;
+
+    if (!userId || !orgId) {
+        throw new Error("Unauthorized");        
+    }
+
+    try {
+        const sprint = await db.sprint.findUnique({
+            where: {id: sprintId},
+            include: {project: true},
+        });
+
+        if (!sprint || sprint.project.organizationId !== orgId) {
+            throw new Error("Sprint not found or you don't have permission to update it");            
+        }
+
+        if(orgRole !== "admin"){
+            throw new Error("Only organization admins can update sprint status");
+        }
+
+        const now = new Date();
+        const startDate = new Date(sprint.startDate);
+        const endDate = new Date(sprint.endDate);
+
+        if (newStatus === "ACTIVE" && (now < startDate || now > endDate)) {
+            throw new Error("Sprint can only be activated during its timeframe");
+        }
+
+        if (newStatus === "COMPLETED" && sprint.status !== "ACTIVE") {
+            throw new Error("Sprint can only be completed if it is currently active");            
+        }
+
+        const updatedSprint = await db.sprint.update({
+            where: {id: sprintId},
+            data: {status: newStatus},
+        });
+
+        return {success: true, sprint: updatedSprint};
+    } catch (error) {
+        throw new Error(error.message)
+    }   
+}
