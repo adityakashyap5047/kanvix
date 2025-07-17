@@ -12,9 +12,9 @@ export const metadata = {
   title: "Kanvix",
   description: "Kanvix is a modern project management platform designed to simplify team collaboration, track progress effortlessly, and ensure on-time delivery of goals.",
   icons: {
-      icon: "kanvix/kanvix.png",
-      shortcut: "kanvix/kanvix.png",
-      apple: "kanvix/kanvix.png",
+    icon: "/kanvix/kanvix.png",
+    shortcut: "/kanvix/kanvix.png",
+    apple: "/kanvix/kanvix.png",
   },
 };
 
