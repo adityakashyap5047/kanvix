@@ -44,3 +44,26 @@ export async function createIssue(projectId, data){
 
     return issue;
 }
+
+export async function getIssueForSprint(sprintId){
+    const {userId, sessionClaims} = auth();
+        
+    const orgId = sessionClaims?.o?.id;
+
+    if (!userId || !orgId) {
+        throw new Error("Unauthorized");        
+    }
+
+    const issues = await db.issue.findMany({
+        where: {
+            sprintId,
+        },
+        orderBy: [{status: "asc"}, {order: "asc"}],
+        include: {
+            reporter: true,
+            assignee: true,
+        },
+    });
+
+    return issues;
+}
