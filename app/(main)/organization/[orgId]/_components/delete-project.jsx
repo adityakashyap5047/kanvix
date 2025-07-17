@@ -2,12 +2,12 @@
 
 import { useOrganization } from '@clerk/nextjs'
 import React, { useEffect } from 'react'
-import { Button } from './ui/button';
 import { Trash2 } from 'lucide-react';
 import useFetch from '@/hooks/use-fetch';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { deleteProject } from '@/actions/project';
+import { Button } from '@/components/ui/button';
 
 const DeleteProject = ({projectId}) => {
 
@@ -41,7 +41,7 @@ const DeleteProject = ({projectId}) => {
 
     return <>
 
-        <Button 
+        <Button
             variant="ghost" 
             size="sm"
             className={`${isDeleting ? "animate-pulse" : "cursor-pointer"} flex flex-col`} 

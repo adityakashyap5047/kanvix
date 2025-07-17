@@ -1,6 +1,6 @@
 import { getProjects } from "@/actions/project";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../../../../../components/ui/card";
 import DeleteProject from "./delete-project";
 
 export default async function ProjectList({ orgId }) {

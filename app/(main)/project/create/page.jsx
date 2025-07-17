@@ -12,7 +12,7 @@ import useFetch from "@/hooks/use-fetch";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { createProject } from "@/actions/project";
-import OrgSwitcher from "@/components/org-switcher";
+import OrgSwitcher from "@/app/(main)/organization/[orgId]/_components/org-switcher";
 
 const CreateProjectPage = () => {
 
