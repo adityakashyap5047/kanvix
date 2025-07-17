@@ -5,7 +5,10 @@ import { auth, clerkClient } from "@clerk/nextjs/server";
 
 export async function createProject(data){
 
-    const { userId, orgId } = auth();
+    const { userId, sessionClaims } = auth();
+
+    const orgId = sessionClaims?.o?.id;
+    
     if (!userId) {
         throw new Error("Unauthorized");
     }
