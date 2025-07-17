@@ -65,7 +65,7 @@ const SprintCreationForm = ({
             >{showForm ? "Cancel" : "Create New Sprint"}</Button>
         </div>
         {
-            showForm && <Card className={"pt-4 mx-3 mb-4"}>
+            showForm && <Card className={"pt-4 mx-3 mb-4 !bg-slate-900"}>
                 <CardContent>
                     <form className="flex flex-wrap gap-4 items-end" onSubmit={handleSubmit(formSubmit)}>
                         <div className="flex-1 min-w-[200px]">
@@ -133,7 +133,7 @@ const SprintCreationForm = ({
                             />
                         </div>
 
-                        <Button type="submit" disabled={createSprintLoading} className={"cursor-pointer"}>
+                        <Button type="submit" disabled={createSprintLoading} className={"cursor-pointer !bg-slate-950 hover:!bg-slate-800 text-white"}>
                             {createSprintLoading ? "Creating..." : "Create Sprint"}
                         </Button>
                     </form>

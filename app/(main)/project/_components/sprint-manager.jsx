@@ -70,7 +70,7 @@ const SprintManager = ({ sprint, setSprint, sprints, projectId }) => {
                 </SelectTrigger>
                 <SelectContent>
                     {sprints.map((sprint) => {
-                        return <SelectItem key={sprint.id} value={sprint.id} className={"cursor-pointer"}>
+                        return <SelectItem key={sprint.id} value={sprint.id} className={"cursor-pointer !bg-slate-900 hover:!bg-slate-950"}>
                             {sprint.name} ({format(sprint.startDate, 'MMM d, yyyy')} to{" "}
                             {format(sprint.endDate, 'MMM d, yyyy')})
                         </SelectItem>
