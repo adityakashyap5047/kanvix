@@ -20,3 +20,10 @@ export const sprintSchema = z.object({
     startDate: z.date(),
     endDate: z.date()
 });
+
+export const issueSchema = z.object({
+    title: z.string().min(1, "Issue title is required").max(200, "Issue title must be less than 200 characters"),
+    assigneeId: z.string().cuid("Please select assignee"),
+    description: z.string().max(1000, "Issue description must be less than 1000 characters").optional(),
+    priority: z.enum(["LOW", "MEDIUM", "HIGH", "URGENT"]),
+})
