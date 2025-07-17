@@ -13,4 +13,10 @@ export const projectSchema = z.object({
         .string()
         .max(500, "Project description must be less than 500 characters")
         .optional(),
-})
+});
+
+export const sprintSchema = z.object({
+    name: z.string().min(1, "Sprint name is required").max(100, "Sprint name must be less than 100 characters"),
+    startDate: z.date(),
+    endDate: z.date()
+});
