@@ -9,13 +9,15 @@ const isProtectedRoute = createRouteMatcher([
 ])
 
 export default clerkMiddleware((auth, req) => {
-  if(!auth().userId && isProtectedRoute(req)){
+  const {userId, orgId} = auth();
+  console.log("Middleware auth:", orgId);
+  if(!userId && isProtectedRoute(req)){
     return auth().redirectToSignIn();
   }
 
   if(
-    auth().userId &&
-    auth().orgId &&
+    userId &&
+    orgId &&
     req.nextUrl.pathname !== '/onboarding' &&
     req.nextUrl.pathname !== "/"
   ){

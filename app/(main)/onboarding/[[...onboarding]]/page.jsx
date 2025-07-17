@@ -9,7 +9,7 @@ const Onboarding = () => {
   const { organization } = useOrganization();
   const router = useRouter();
 
-  useEffect(() => {
+  useEffect(() => { 
     if(organization){
       router.push(`/organization/${organization.slug}`);
     }

@@ -1,6 +1,5 @@
 "use client";
 
-import OrgSwitcher from "@/components/org-switcher";
 import { useOrganization, useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -9,27 +8,44 @@ import { projectSchema } from "@/app/lib/validators";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import useFetch from "@/hooks/use-fetch";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { createProject } from "@/actions/project";
+import OrgSwitcher from "@/components/org-switcher";
 
 const CreateProjectPage = () => {
 
   const { isLoaded: isOrgLoaded, membership } = useOrganization();
   const { isLoaded: isUserLoaded } = useUser();
   const [isAdmin, setIsAdmin] = useState(false);
+  const router = useRouter();
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(projectSchema),
   })
 
-  const onSubmit = async() => {
-
-  }
-
+  
   useEffect(() => {
     if(isOrgLoaded && isUserLoaded && membership) {
       setIsAdmin(membership.role === "org:admin");
     }
   }, [isOrgLoaded, isUserLoaded, membership]);
-
+  
+  
+  const {data: project, loading, error, fn: createProjectFn} = useFetch(createProject);
+  
+  useEffect(() => {
+    if (project) {
+      toast.success("Project created Successfully")
+      router.push(`/project/${project.id}`);
+    }
+  }, [loading])
+  
+  const onSubmit = async(data) => {
+    createProjectFn(data);
+  }
+  
   if (!isOrgLoaded || !isUserLoaded) {
     return null;
   }
@@ -42,6 +58,7 @@ const CreateProjectPage = () => {
       </div>
     )
   }
+  
 
   return (
     <div className="container mx-auto py-10 xl:max-w-[95%]">
@@ -51,6 +68,20 @@ const CreateProjectPage = () => {
 
       <form className="flex flex-col space-y-4 px-4" onSubmit={handleSubmit(onSubmit)}>
         <div>
+          <div className="flex gap-4">
+            <Input
+              id="key"
+              className={"!bg-slate-950"}
+              placeholder="Project Key (RCYT)"
+              {...register("key")}
+            />
+            <OrgSwitcher />
+          </div>
+          {errors.key && (
+            <p className="text-red-500 text-sm mt-2 ml-2">{errors?.key?.message}</p>
+          )}          
+        </div>
+        <div>
           <Input
             id="name"
             className={"!bg-slate-950"}
@@ -59,17 +90,6 @@ const CreateProjectPage = () => {
           />
           {errors.name && (
             <p className="text-red-500 text-sm mt-2 ml-2">{errors?.name?.message}</p>
-          )}
-        </div>
-        <div>
-          <Input
-            id="key"
-            className={"!bg-slate-950"}
-            placeholder="Project Key (Ex: RCYT)"
-            {...register("key")}
-          />
-          {errors.key && (
-            <p className="text-red-500 text-sm mt-2 ml-2">{errors?.key?.message}</p>
           )}
         </div>
         <div>
@@ -85,8 +105,9 @@ const CreateProjectPage = () => {
         </div>
 
         <Button type="submit" size="lg" className={"bg-blue-500 text-white hover:bg-blue-800 cursor-pointer"}>
-          Create Project
+          {loading ? "Creating..." : "Create Project"}
         </Button>
+        {error && <p className="text-red-500 text-sm mt-2 ml-2">{error?.message}</p>}
       </form>
     </div>
   )
