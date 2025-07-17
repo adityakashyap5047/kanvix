@@ -30,7 +30,7 @@ const DeleteProject = ({projectId}) => {
 
     useEffect(() => {
         if(deleted && deleted.success){
-            toast.success("Project deleted successfully");
+            toast.error("Project deleted successfully");
             router.refresh();
         }
     }, [deleted]);
