@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { sprintSchema } from "@/app/lib/validators";
@@ -17,12 +17,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { getProject } from "@/actions/project";
+import { BeatLoader } from "react-spinners";
 
 const SprintCreationForm = ({
     projectTitle,
     projectId,
     projectKey,
-    sprints
 }) => {
 
     const [showForm, setShowForm] = useState(false);
@@ -32,10 +33,13 @@ const SprintCreationForm = ({
     })
     const router = useRouter();
 
+    const {data: project, fn: fetchProject, loading} = useFetch(() => getProject(projectId));
     const {loading: createSprintLoading, fn: createSprintFn} = useFetch(createSprint);
 
-    const sprintKey = sprints?.length + 1;
-
+    useEffect(() => {
+        fetchProject();
+    }, [projectId]);
+    
     const formSubmit = async (data) => {
         await createSprintFn(projectId, {
             ...data,
@@ -44,17 +48,33 @@ const SprintCreationForm = ({
         })
         setShowForm(false);
         toast.success("Sprint created successfully!");
+        fetchProject();
         router.refresh();
     }
 
-    const { register, handleSubmit, formState: { errors }, control } = useForm({
+    const { register, handleSubmit, setValue, formState: { errors }, control } = useForm({
         resolver: zodResolver(sprintSchema),
         defaultValues:{
-            name: `${projectKey}-${sprintKey}`,
             startDate: dateRange.from,
             endDate: dateRange.to
         }
     })
+
+    useEffect(() => {
+        if (project) {
+            const sprintKey = project.sprints.length + 1;
+            setValue("name", `${project.key}-${sprintKey}`);
+        }
+    }, [project, setValue]);
+
+    if (loading || !project) {
+        return (
+            <div className="flex flex-wrap px-4 mb-4 justify-between items-center">
+                <h1 className="text-5xl font-bold mb-2 gradient-title">{projectTitle}</h1>
+                <BeatLoader color='#36d7b7'/>
+            </div>
+        );
+    }
 
   return (
     <>
@@ -64,6 +84,7 @@ const SprintCreationForm = ({
                 className={"mt-2 cursor-pointer"} 
                 onClick={() => setShowForm(!showForm)}
                 variant={showForm ? "destructive" : "default"}
+                disabled={createSprintLoading}
             >{showForm ? "Cancel" : "Create New Sprint"}</Button>
         </div>
         {
@@ -77,7 +98,7 @@ const SprintCreationForm = ({
                             >Sprint Name</label>
                             <Input 
                                 id="name"
-                                className={"!bg-slate-950"} 
+                                className={"!bg-slate-950"}
                                 readOnly
                                 {...register("name")}
                             />

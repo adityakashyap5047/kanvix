@@ -21,7 +21,6 @@ const page = async ({params}) => {
         projectTitle={project.name}
         projectId={projId}
         projectKey={project.key}
-        sprints={project.sprints}
       />
 
       {/* sprint Board  */}
