@@ -163,13 +163,6 @@ export async function updateIssue(issueId, data) {
             throw new Error("Unauthorized to update this issue");
         }
 
-        if(
-            issue.reporterId !== user.id &&
-            !issue.project.adminIds.includes(user.id)
-        ){
-            throw new Error("Unauthorized to delete this issue");
-        }
-
         const updateIssue = await db.issue.update({
             where: {id: issueId},
             data: {

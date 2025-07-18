@@ -83,7 +83,7 @@ const IssueDetailsDialog = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className={'!bg-slate-900'}>
+        <DialogContent className={`!bg-slate-900 border-3 border-red-600 ${borderCol}`}>
             <DialogHeader>
                 <div className='flex justify-between items-center'>
                     <DialogTitle className={"text-3xl"}>{issue.title}</DialogTitle>
