@@ -12,6 +12,7 @@ import { getIssueForSprint, updateIssueOrder } from '@/actions/issues';
 import { BarLoader } from 'react-spinners';
 import IssueCard from './issue-card';
 import { toast } from 'sonner';
+import BoardFilters from './board-filters';
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -54,6 +55,10 @@ const SprintBoard = ({ sprints, projectId, orgId }) => {
     }, [currentSprint.id]);
 
     const [filteredIssues, setFilteredIssues] = React.useState([]);
+
+    const handleFilterChange = (newFilteredIssues) => {
+      setFilteredIssues(newFilteredIssues);
+    }
     
     React.useEffect(() => {
       if (Array.isArray(issues)) {
@@ -142,6 +147,14 @@ const SprintBoard = ({ sprints, projectId, orgId }) => {
             sprints={sprints}
             projectId={projectId}
         />
+
+        {issues && !issuesLoading && (
+          <BoardFilters 
+            issues={issues}
+            onFilterChange={handleFilterChange}
+          />
+        )}
+
         {updateIssueError && (
           <p className='text-red-500 px-6 mt-2'>{updateIssueError.message}</p>
         )}
