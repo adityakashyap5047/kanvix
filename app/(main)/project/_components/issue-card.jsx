@@ -3,12 +3,21 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import React from 'react'
 import UserAvatar from './user-avatar';
 import { formatDistanceToNow } from 'date-fns';
+import { useRouter } from 'next/navigation';
+import IssueDetailsDialog from './issue-details-dialog';
 
 const priorityColors = {
     LOW: "border-t-green-500",
     MEDIUM: "border-t-yellow-500",
     HIGH: "border-t-orange-500",
     URGENT: "border-t-red-500",
+};
+
+const priorityBorderColors = {
+    LOW: "border-green-500",
+    MEDIUM: "border-yellow-500",
+    HIGH: "border-orange-500",
+    URGENT: "border-red-500",
 };
 
 const IssueCard = ({
@@ -18,12 +27,29 @@ const IssueCard = ({
     onUpdate = () => {},
 }) => {
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+    const router = useRouter();
+
+    const onDeleteHandler = (...params) => {
+        router.refresh();
+        onDelete(...params);
+    }
+
+    const onUpdateHandler = (...params) => {
+        router.refresh();
+        onUpdate(...params);
+    }
 
     const created = formatDistanceToNow(new Date(issue.createdAt), { addSuffix: true });
 
   return (
     <>
-        <Card className={`!bg-slate-950 cursor-pointer hover:shadow-md transition-shadow border-t-4 ${priorityColors[issue.priority]} rounded-md`}>
+        <Card 
+            className={`
+                !bg-slate-950 cursor-pointer hover:shadow-md transition-shadow 
+                border-t-4 ${priorityColors[issue.priority]} rounded-md`
+            }
+            onClick={() => setIsDialogOpen(true)}
+        >
             <CardHeader className={``}>
                 <CardTitle>{issue.title}</CardTitle>
             </CardHeader>
@@ -40,7 +66,14 @@ const IssueCard = ({
             </CardFooter>
         </Card>
 
-        {isDialogOpen && <></>}
+        {isDialogOpen && <IssueDetailsDialog 
+            isOpen={isDialogOpen}
+            onClose={() => setIsDialogOpen(false)}
+            issue={issue}
+            onDelete={onDeleteHandler}
+            onUpdate={onUpdateHandler}
+            borderCol={priorityBorderColors[issue.priority]}
+        />}
     </>
   )
 }
