@@ -145,7 +145,7 @@ const SprintBoard = ({ sprints, projectId, orgId }) => {
         {updateIssueError && (
           <p className='text-red-500 px-6 mt-2'>{updateIssueError.message}</p>
         )}
-        {(updateIssueLoading && issuesLoading) && (
+        {(updateIssueLoading || issuesLoading) && (
           <BarLoader className='mt-4' color='#36d7b7' width={"100%"} />
         )}
 
@@ -165,6 +165,7 @@ const SprintBoard = ({ sprints, projectId, orgId }) => {
                         key={issue.id}
                         draggableId={issue.id}
                         index={index}
+                        isDragDisabled={updateIssueLoading}
                       >
                         {(provided) => {
                           return (
