@@ -20,7 +20,8 @@ const IssueDetailsDialog = ({
     issue, 
     onDelete = () => {}, 
     onUpdate = () => {}, 
-    borderCol = ""
+    borderCol = "",
+    sprintStatus = "PLANNED"
 }) => {
 
     const [status, setStatus] = React.useState(issue.status)
@@ -80,6 +81,8 @@ const IssueDetailsDialog = ({
         router.push(`/project/${issue.projectId}?sprint=${issue.sprintId}`)        
     }
 
+    const cardNotMove = sprintStatus === "PLANNED" || sprintStatus === "COMPLETED";
+
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -107,7 +110,7 @@ const IssueDetailsDialog = ({
             )}
             <div className='flex items-center space-x-2'>
                 <div className='w-1/2'>
-                    <Select value={status} onValueChange={handleStatusChange}>
+                    <Select value={status} onValueChange={handleStatusChange} disabled={cardNotMove}>
                         <SelectTrigger className={"w-full cursor-pointer !bg-slate-900"}>
                             <SelectValue placeholder="Select status" />
                         </SelectTrigger>

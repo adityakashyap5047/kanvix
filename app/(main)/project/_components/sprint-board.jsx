@@ -200,6 +200,7 @@ const SprintBoard = ({ sprints, projectId, orgId }) => {
                                   })
                                 )
                               }
+                              sprintStatus={currentSprint.status}
                             />
                           </div>)
                         }}

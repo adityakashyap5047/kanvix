@@ -27,6 +27,7 @@ const IssueCard = ({
     showStatus = false,
     onDelete = () => {},
     onUpdate = () => {},
+    sprintStatus = "PLANNED"
 }) => {
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
     const router = useRouter();
@@ -75,6 +76,7 @@ const IssueCard = ({
             onDelete={onDeleteHandler}
             onUpdate={onUpdateHandler}
             borderCol={priorityBorderColors[issue.priority]}
+            sprintStatus={sprintStatus}
         />}
     </>
   )
