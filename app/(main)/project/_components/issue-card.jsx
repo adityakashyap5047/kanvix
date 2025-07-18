@@ -1,10 +1,12 @@
+"use client";
+
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import React from 'react'
 import UserAvatar from './user-avatar';
 import { formatDistanceToNow } from 'date-fns';
-import { useRouter } from 'next/navigation';
 import IssueDetailsDialog from './issue-details-dialog';
+import { useRouter } from 'next/navigation';
 
 const priorityColors = {
     LOW: "border-t-green-500",
