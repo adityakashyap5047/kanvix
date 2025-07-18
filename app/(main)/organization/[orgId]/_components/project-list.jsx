@@ -23,7 +23,7 @@ export default async function ProjectList({ orgId }) {
 
     return <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">{projects.map((project) => {
         return (
-            <Card key={project.id}>
+            <Card key={project.id} className={"!bg-slate-900"}>
                 <CardHeader>
                     <CardTitle className={"flex justify-between items-center italic"}>
                         {project.name}

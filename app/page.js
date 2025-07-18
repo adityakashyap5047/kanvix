@@ -30,10 +30,10 @@ const features = [
 
 function page() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-[75vh]">
       {/* Main Section */}
-      <section className="container mx-auto py-20 text-center">
-        <h1 className="text-6xl sm:text-7xl lg:text-8xl font-extrabold gradient-title pb-6 flex flex-col">
+      <section className="container mx-auto py-16 text-center">
+        <h1 className="text-6xl sm:text-7xl font-extrabold gradient-title pb-6 flex flex-col">
           Streamline Your Workflow <br />
           <span className="flex mx-auto gap-3 sm:gap-4 items-center">
             With{" "}
@@ -60,14 +60,14 @@ function page() {
       </section>
 
       {/* Features Section */}
-      <section className="bg-gray-900 py-20 px-5">
-        <div className="container mx-auto">
+      <section className="bg-gray-900 py-6 px-5">
+        <div className="container mx-auto py-5">
           <h3 className="text-3xl font-bold mb-12 text-center">Key Features</h3>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <Card key={index} className="bg-gray-800">
-                <CardContent className="pt-6">
-                  <feature.icon className="h-12 w-12 mb-4 text-blue-300" />
+                <CardContent>
+                  <feature.icon className="h-6 w-6 mb-2 text-blue-300" />
                   <h4 className="text-xl font-semibold mb-2">
                     {feature.title}
                   </h4>

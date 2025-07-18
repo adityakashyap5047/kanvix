@@ -17,9 +17,9 @@ const UserIssues = async ({userId}) => {
   return (
     <>
         <Tabs defaultValue="assigned" className="w-full">
-            <TabsList className="mb-4">
-                <TabsTrigger value="assigned" className={"cursor-pointer"}>Assigned to you</TabsTrigger>
-                <TabsTrigger value="reported" className={"cursor-pointer"}>Reported by you</TabsTrigger>
+            <TabsList className="mb-4 !bg-slate-800 gap-2">
+                <TabsTrigger value="assigned" className={"cursor-pointer !bg-slate-900"}>Assigned to you</TabsTrigger>
+                <TabsTrigger value="reported" className={"cursor-pointer !bg-slate-900"}>Reported by you</TabsTrigger>
             </TabsList>
             <TabsContent value="assigned">
                 <Suspense fallback={<div>Loading...</div>}>

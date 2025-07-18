@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
         <body className={`${inter.className} dotted-background`}>
           <ThemeProvider attribute="class" defaultTheme="dark">
             <Header />
-            <main className="min-h-screen">
+            <main className="min-h-[75vh]">
               {children}
             </main>
             <Toaster richColors />
