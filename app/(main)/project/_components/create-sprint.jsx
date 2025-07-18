@@ -22,7 +22,7 @@ const SprintCreationForm = ({
     projectTitle,
     projectId,
     projectKey,
-    sprintKey
+    sprints
 }) => {
 
     const [showForm, setShowForm] = useState(false);
@@ -33,6 +33,8 @@ const SprintCreationForm = ({
     const router = useRouter();
 
     const {loading: createSprintLoading, fn: createSprintFn} = useFetch(createSprint);
+
+    const sprintKey = sprints?.length + 1;
 
     const formSubmit = async (data) => {
         await createSprintFn(projectId, {

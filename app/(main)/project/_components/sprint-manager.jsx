@@ -115,6 +115,9 @@ const SprintManager = ({ sprint, setSprint, sprints, projectId }) => {
             )
         }
     </div>
+    {updateError && (
+        <p className='text-red-500 px-6 mt-2'>{updateError.message}</p>
+    )}
     {isUpdatingStatus && <BarLoader width={"100%"} color="#36d7b7" className="mt-2" />}
     </>
   )

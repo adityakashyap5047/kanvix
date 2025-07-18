@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { BarLoader } from "react-spinners";
 import { toast } from "sonner";
+import UserAvatar from "./user-avatar";
 
 const IssueCreationDrawer = ({
     isOpen,
@@ -108,7 +109,7 @@ const IssueCreationDrawer = ({
                                     <SelectContent>
                                         {users && users.map((user) => (
                                             <SelectItem key={user.id} value={user.id} className={"!bg-slate-900 hover:!bg-slate-950 cursor-pointer"}>
-                                                {user.name}
+                                                <UserAvatar user={user}/>
                                             </SelectItem>
                                         ))}
                                     </SelectContent>
