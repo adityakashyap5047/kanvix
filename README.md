@@ -49,13 +49,19 @@ cd kanvix
 # Install dependencies
 npm install
 
+# Rename the .env.example file to .env
+mv .env.example .env
+
+# Fill in the required environment variables in the .env file
+
 # Start the development server
 npm run dev
 
-## 🌐 Live Demo  
-Coming soon at: [https://kanvix.app](https://kanvix.app)
 ```
 ---
+
+## 🌐 Live Demo
+[![Live Demo](https://img.shields.io/badge/Live-Kanvix-blue?style=for-the-badge)](https://kanvix.vercel.app)
 
 ## 🤝 Contributing  
 Contributions are welcome!  
