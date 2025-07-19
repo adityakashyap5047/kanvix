@@ -22,7 +22,16 @@
 
 ## 📸 Screenshots
 
-> Coming soon!
+<div align="center">
+  <img src="public/project/kanvix-1.png" alt="Kanvix Screenshot 1" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-2.png" alt="Kanvix Screenshot 2" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-3.png" alt="Kanvix Screenshot 3" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-4.png" alt="Kanvix Screenshot 4" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-5.png" alt="Kanvix Screenshot 5" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-6.png" alt="Kanvix Screenshot 6" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-7.png" alt="Kanvix Screenshot 7" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-8.png" alt="Kanvix Screenshot 8" width="220" style="margin: 6px;" />
+</div>
 
 ---
 
