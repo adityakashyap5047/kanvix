@@ -15,7 +15,6 @@
 - ✅ Task and project tracking with real-time updates
 - 👥 Team collaboration and role-based access
 - 📅 Calendar & milestone planning
-- 🔔 Smart notifications and reminders
 - 📊 Dashboard with progress analytics
 - 🔐 Secure authentication and data handling
 
@@ -29,11 +28,12 @@
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React / Next.js / Tailwind CSS  
-- **Backend**: Node.js / Express.js  
-- **Database**: MongoDB  
-- **Authentication**: JWT / OAuth  
-- **Others**: Redux, Axios, Cloudinary, etc.
+- **Frontend**: React / Next.js / Tailwind CSS 
+- **Backend**: Next.js API Routes / Prisma ORM  
+- **Database**: PostgreSQL 
+- **Authentication**: Clerk  
+- **Form Handling & Validation**: React Hook Form / Zod  
+- **UI Components**: Shadcn / Radix UI / Lucide Icons  
 
 ---
 
