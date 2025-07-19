@@ -127,7 +127,7 @@ const IssueDetailsDialog = ({
                     </Select>
                 </div>
                 <div className='w-1/2'>
-                    <Select value={priority} onValueChange={handlePriorityChange} disabled={!canChange || sprintEnded}>
+                    <Select value={priority} onValueChange={handlePriorityChange} disabled={sprintEnded || !canChange}>
                         <SelectTrigger className={`w-full cursor-pointer !bg-slate-900 border-2 ${borderCol}`}>
                             <SelectValue placeholder="Select priority" />
                         </SelectTrigger>

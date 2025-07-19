@@ -211,7 +211,8 @@ export async function getUserIssues(userId) {
         include: {
             project: true,
             assignee: true,
-            reporter: true
+            reporter: true,
+            sprint: true,
         },
         orderBy: {updatedAt: "desc"}
     })
