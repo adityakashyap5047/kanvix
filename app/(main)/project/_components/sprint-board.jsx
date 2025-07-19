@@ -9,7 +9,7 @@ import { Plus } from 'lucide-react';
 import IssueCreationDrawer from './create-issue';
 import useFetch from '@/hooks/use-fetch';
 import { getIssueForSprint, updateIssueOrder } from '@/actions/issues';
-import { BarLoader, BounceLoader, RotateLoader } from 'react-spinners';
+import { BarLoader } from 'react-spinners';
 import IssueCard from './issue-card';
 import { toast } from 'sonner';
 import BoardFilters from './board-filters';
@@ -138,9 +138,6 @@ const SprintBoard = ({ sprints, projectId, orgId }) => {
     }
 
     if(issuesError) return <div className='text-red-500 px-6'>Error loading issues</div>;
-    if(!filteredIssues.length){
-      return <div className='flex justify-center items-end h-[200px]'><RotateLoader color='#36d7b7' /></div>
-    }
   return (
     <div>
         <SprintManager
