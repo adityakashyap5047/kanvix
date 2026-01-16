@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# <img src="public/kanvix/kanvix.png" height="26" alt="Kanvix Logo" > **Kanvix**
 
-## Getting Started
+> **A modern project management platform to streamline collaboration and boost productivity.**
 
-First, run the development server:
+---
+
+## Overview
+
+**Kanvix** is a sleek and intuitive project management platform designed to simplify team collaboration, track progress effortlessly, and ensure timely delivery of goals. Whether you're managing a startup, agency, or a large enterprise team — Kanvix keeps everything organized, visible, and on track.
+
+---
+
+## Key Features
+
+- Task and project tracking with real-time updates
+- Team collaboration and role-based access
+- Calendar & milestone planning
+- Dashboard with progress analytics
+- Secure authentication and data handling
+
+---
+
+## Screenshots
+
+<div align="center">
+  <img src="public/project/kanvix-1.png" alt="Kanvix Screenshot 1" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-2.png" alt="Kanvix Screenshot 2" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-3.png" alt="Kanvix Screenshot 3" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-4.png" alt="Kanvix Screenshot 4" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-5.png" alt="Kanvix Screenshot 5" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-6.png" alt="Kanvix Screenshot 6" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-7.png" alt="Kanvix Screenshot 7" width="220" style="margin: 6px;" />
+  <img src="public/project/kanvix-8.png" alt="Kanvix Screenshot 8" width="220" style="margin: 6px;" />
+</div>
+
+---
+
+## Tech Stack
+
+- **Frontend**: React / Next.js / Tailwind CSS 
+- **Backend**: Next.js API Routes / Prisma ORM  
+- **Database**: PostgreSQL 
+- **Authentication**: Clerk  
+- **Form Handling & Validation**: React Hook Form / Zod  
+- **UI Components**: Shadcn / Radix UI / Lucide Icons  
+
+---
+
+## Running Locally
 
 ```bash
+# Clone the repository
+git clone https://github.com/adityakashyap5047/kanvix.git
+
+# Navigate to the project directory
+cd kanvix
+
+# Install dependencies
+npm install
+
+# Rename the .env.example file to .env
+mv .env.example .env
+
+# Fill in the required environment variables in the .env file
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌐 Live Demo
+[![Live Demo](https://img.shields.io/badge/Live-Kanvix-blue?style=for-the-badge)](https://kanvix.vercel.app)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contributing  
+Contributions are welcome!  
+Please open an issue first to discuss what you would like to change.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## License  
+This project is licensed under the **MIT License**.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Acknowledgements  
+Inspired by tools like **Trello**, **Asana**, and **Notion**.  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Thanks to all contributors and the open-source community 
