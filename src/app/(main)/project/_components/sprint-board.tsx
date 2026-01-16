@@ -15,6 +15,7 @@ import BoardFilters from './board-filters';
 import { getIssueForSprint, updateIssueOrder } from '@/actoins/issues';
 import { Issue, IssueStatus, Sprint } from '@/app/lib/Types';
 import type { DropResult } from '@hello-pangea/dnd';
+import { isAfter } from 'date-fns';
 
 const reorder = (list: Issue[], startIndex: number, endIndex: number) => {
   const result = Array.from(list);
@@ -74,6 +75,12 @@ const SprintBoard = ({ sprints, projectId, orgId }: {sprints: Sprint[], projectI
   }
 
   const onDragEnd = async (result: DropResult) => {
+    const now = new Date();
+    if(isAfter(now, currentSprint.endDate)){
+      toast.warning("Cannot update board after sprint expired");
+      return;
+    }
+
     if(currentSprint.status === "PLANNED") {
       toast.warning("Start the sprint to update board");
       return;

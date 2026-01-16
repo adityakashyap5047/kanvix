@@ -6,12 +6,16 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import useFetch from '@/hooks/use-fetch';
+import { useOrganization } from '@clerk/nextjs';
 import { format, formatDistanceToNow, isAfter, isBefore } from 'date-fns';
 import { useRouter, useSearchParams,  } from 'next/navigation';
 import React, { useEffect } from 'react'
 import { BarLoader } from 'react-spinners';
+import { toast } from 'sonner';
 
 const SprintManager = ({ sprint, setSprint, sprints, projectId }: {sprint: Sprint, setSprint: React.Dispatch<React.SetStateAction<Sprint>>, sprints: Sprint[], projectId: string}) => {
+
+    const { membership } = useOrganization();
 
     const [status, setStatus] = React.useState<Sprint["status"]>(sprint.status);
 
@@ -53,6 +57,10 @@ const SprintManager = ({ sprint, setSprint, sprints, projectId }: {sprint: Sprin
     }, [searchParams, sprints, setSprint, sprint.id])
 
     const handleStatusChange = async (newStatus: string) => {
+        if(membership?.role !== "org:admin" && membership?.roleName !== "Admin"){
+            toast.error("Only Organization Admin can update sprint status.");
+            return;
+        }
         setStatus(newStatus as SprintStatus);
         setSprint((prevSprint) => ({
             ...prevSprint,

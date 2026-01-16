@@ -26,8 +26,8 @@ const NotFound = () => {
         </p>
 
         <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-xl mx-auto leading-relaxed">
-          The page you&qutoe;re looking for doesn&qutoe;t exist or may have been moved.
-          Don&qutoe;t worry — you can go back or return to the dashboard.
+          The page you&apos;re looking for doesn&apos;t exist or may have been moved.
+          Don&apos;t worry — you can go back or return to the dashboard.
         </p>
 
         {/* Buttons */}

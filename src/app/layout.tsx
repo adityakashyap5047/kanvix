@@ -38,10 +38,10 @@ export default function RootLayout({
       }}
     >
       <html lang="en" suppressHydrationWarning>
-        <body className={`${inter.className} dotted-background`}>
+        <body className={`${inter.className} dotted-background flex min-h-screen flex-col`}>
           <ThemeProvider attribute="class" defaultTheme="dark">
             <Header />
-            <main className="min-h-[75vh]">
+            <main className="flex-1">
               {children}
             </main>
             <Toaster richColors />

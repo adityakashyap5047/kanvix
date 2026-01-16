@@ -19,7 +19,7 @@ const Footer = () => {
 
           <div className="flex gap-3">
             <Link
-              href="/project"
+              href="/onboarding"
               className="px-5 py-2 rounded-sm bg-white text-slate-950 font-medium hover:bg-slate-200 transition"
             >
               Get Started
